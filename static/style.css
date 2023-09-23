@@ -1,0 +1,24 @@
+body{
+    background: rgb(175, 173, 173);
+}
+
+.my-card:hover{
+    transform: scale(1.1);
+    transition: 0.2s ease-in-out;
+}
+/* Make the navbar sticky */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  /* Initial background color and transition */
+  .navbar.navbar-sticky {
+    background-color: rgba(33, 37, 41, 0.8); /* Change to your desired background color and opacity */
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.7); /* Change the background color and opacity as desired */
+  }

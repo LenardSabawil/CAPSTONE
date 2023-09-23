@@ -1,0 +1,95 @@
+{% extends 'partials/costumer_base.html' %}
+{% block title %}Reservation Page{% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% include 'partials/nav.html' %}
+
+{% block content %}
+<header class="site-header js-site-header">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="{% url 'dashboard-index' %}">Recidencia Del Hamor RMS</a></div>
+        <div class="col-6 col-lg-8"> 
+          
+          <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <!-- END menu-toggle -->
+          
+          <div class="site-navbar js-site-navbar">
+            <nav role="navigation">
+              <div class="container">
+                <div class="row full-height align-items-center">
+                  <div class="col-md-6 mx-auto">
+                    <ul class="list-unstyled menu">
+                      <li class="active"><a href="{% url 'dashboard-index' %}">Home</a></li>
+                      <li><a href="{% url 'user-login' %}">Login</a></li>
+                      <li><a href="{% url 'user-register' %}">Register</a></li>
+                      <li><a href="{% url 'roomlist' %}">Rooms</a></li>
+                      <li><a href="{% url 'costumer-about' %}">About</a></li>
+                      <li><a href="{% url 'costumer-events' %}">Events</a></li>
+                      <li><a href="{% url 'costumer-contact' %}">Contact</a></li>
+                      <li><a href="{% url 'booking_view' %}">Reservation</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="site-hero inner-page overlay" style="background-image: url({% static 'images/room2.jpg' %})" data-stellar-background-ratio="0.5">
+    <div class="container">
+      <div class="row site-hero-inner justify-content-center align-items-center">
+        <div class="col-md-10 text-center" data-aos="fade">
+          <h1 class="heading mb-3">Reservation Form</h1>
+          <ul class="custom-breadcrumbs mb-4">
+            <li><a href="{% url 'costumer-dashboard' %}">Home</a></li>
+            <li>&bullet;</li>
+            <li>Reservation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <a class="mouse smoothscroll" href="#next">
+      <div class="mouse-icon">
+        <span class="mouse-wheel"></span>
+      </div>
+    </a>
+  </section>
+  <section class="section contact-section bg-light" id="next">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+          
+          <form action="#" method="POST" class="bg-white p-md-5 p-4 mb-5 border">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="submit" value="Reserve Now" class="btn btn-info text-white py-3 px-5 font-weight-bold">
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
+          <div class="row">
+            <div class="col-md-10 ml-auto contact-info">
+              <p><span class="d-block">Address:</span><span class="text-black"> Brgy. San Sebastian, Sta. Magdalena, Sorsogon</span></p>
+              <p><span class="d-block">Phone:</span><span class="text-black"> 0905 245 1920</span></p>
+              <p><span class="d-block">Email:</span><span class="text-black"> reservations@recidenciadelhamor</span>
+                <span class="text-black">beachfront.com.ph</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

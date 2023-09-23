@@ -1,0 +1,61 @@
+
+<head>
+    <style>
+        /* Custom styles for the side navigation panel */
+        .side-nav {
+            position:fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 265px;
+            background-color: #333;
+            padding-top: 90px;
+            color: #fff;
+        }
+
+        .side-nav a {
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+
+        .side-nav a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body class="g-sidenav-show bg-gray-200">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-3 sidebar">
+                <!-- Side Navigation Panel -->
+                <nav class="side-nav bg-info">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{% url 'dashboard-index' %}">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#">Room Reservation</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'dashboard-staff' %}">Staff</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'dashboard-order' %}">Orders</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'dashboard-product' %}">Foods</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'dashboard-product' %}">Inventory</a>
+                        </li>
+                        <li>
+                            <a href="#">Invoice</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</body>

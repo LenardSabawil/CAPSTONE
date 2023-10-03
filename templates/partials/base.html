@@ -18,7 +18,11 @@
     <title>{% block title %} {% endblock %}</title>
   </head>
   <body>
+    {% if user_role == 'user' %}
+      {% include 'partials/costumer_nav.html' %}
+      {% else %}
       {% include 'partials/nav.html' %}
+    {% endif %}
     
       <!-- Your content goes here -->
       {% block content %}

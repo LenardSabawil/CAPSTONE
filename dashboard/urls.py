@@ -1,5 +1,5 @@
 from django.urls import path
-from reservation.views import room_list, booking_view
+from reservation.views import room_list, booking_view, approve_booking
 from . import views
 
 urlpatterns = [
@@ -18,4 +18,5 @@ urlpatterns = [
     path('events/', views.events, name="costumer-events"),
     path('room_list/', room_list, name='roomlist'),
     path('book/', booking_view, name='booking_view'),
+    path('approve-booking/<int:booking_id>/', approve_booking, name='approve-booking'),
 ]

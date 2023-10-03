@@ -106,7 +106,6 @@ def order(request):
     orders_count = orders.count()
     workers_count = User.objects.all().count()
     products_count = Product.objects.all().count()
-    # items = Order.objects.raw('SELECT * FROM dashboard_order')
     context = {
         'orders': orders,
         'workers_count': workers_count,
@@ -121,12 +120,27 @@ def reservation_list(request):
     orders_count = Order.objects.all().count()
     workers_count = User.objects.all().count()
     products_count = Product.objects.all().count()
-    # items = Order.objects.raw('SELECT * FROM dashboard_order')
     context = {
         'booking': booking,
         'workers_count': workers_count,
         'orders_count': orders_count,
         'products_count': products_count,
+    }
+    return render(request, 'dashboard/reservation_list.html', context)
+
+
+def approve_booking(request, pk):
+    booking = Booking.objects.all(pk=pk)
+    if request.method == "POST":
+         if request.POST.get('reject') == None:
+            booking.status = "Accepted"
+         else: 
+            booking.remarks = request.POST.get('reject')
+            booking.status = "Rejected"
+            booking.save()
+
+    context={
+        'booking': booking,
     }
     return render(request, 'dashboard/reservation_list.html', context)
 

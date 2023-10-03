@@ -35,8 +35,8 @@
                   <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                       <label for="{{ form.room_category.id_for_label }}" class="font-weight-bold text-black">Room Type</label>
                       <select id="{{ form.room_category.id_for_label }}" name="{{ form.room_category.name }}" class="form-control">
-                          {% for choice in form.room_category.choices %}
-                              <option value="{{ room_category }}">{{ room_category }}</option>
+                          {% for choice in form.ROOM_CATEGORY %}
+                              <option value="{{ ROOM_CATEGORY }}">{{ ROOM_CATEGORY }}</option>
                           {% endfor %}
                       </select>
                   </div>

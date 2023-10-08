@@ -34,7 +34,7 @@
                     <td>{{ booking.check_in }}</td>
                     <td>{{ booking.check_out }}</td>
                     <td><a class="btn btn-info btn-sm" type="submit" href="">approve</a></td>
-                    <td><a class="btn btn-danger btn-sm" type="reject" href="">reject</a></td>
+                    <td><a class="btn btn-danger btn-sm" type="reject" href="{% url 'dashboard-reject-booking' booking.id %}">reject</a></td>
                     
                     
                 </tr>

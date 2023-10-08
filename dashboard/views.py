@@ -17,6 +17,7 @@ def index(request):
     workers_count = User.objects.all().count()
     orders_count = Order.objects.all().count()
     products_count = Product.objects.all().count()
+    booking_count = Booking.objects.all().count()
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -33,6 +34,7 @@ def index(request):
         'workers_count': workers_count,
         'orders_count': orders_count,
         'products_count': products_count,
+        'booking_count': booking_count,
     }
     return render(request, 'dashboard/index.html', context)
 
@@ -42,13 +44,31 @@ def staff(request):
     workers_count = User.objects.all().count()
     orders_count = Order.objects.all().count()
     products_count = Product.objects.all().count()
+    booking_count = Booking.objects.all().count()
     context = {
         'workers': workers,
         'workers_count': workers_count,
         'orders_count': orders_count,
         'products_count': products_count,
+        'booking_count': booking_count,
     }
     return render(request, 'dashboard/staff.html', context)
+
+@login_required
+def staff_details(request, pk):
+    workers = User.objects.get(id=pk)
+    workers_count = User.objects.all().count()
+    orders_count = Order.objects.all().count()
+    products_count = Product.objects.all().count()
+    booking_count = Booking.objects.all().count()
+    context = {
+        'workers':workers,
+        'workers_count': workers_count,
+        'orders_count': orders_count,
+        'products_count': products_count,
+        'booking_count': booking_count,
+    }
+    return render(request, 'dashboard/staff_details.html', context)
 
 @login_required
 def product(request):
@@ -56,6 +76,7 @@ def product(request):
     products_count = items.count()
     workers_count = User.objects.all().count()
     orders_count = Order.objects.all().count()
+    booking_count = Booking.objects.all().count()
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
@@ -71,6 +92,7 @@ def product(request):
         'workers_count': workers_count,
         'orders_count': orders_count,
         'products_count': products_count,
+        'booking_count': booking_count,
     }
     return render(request, 'dashboard/product.html', context)
 
@@ -106,17 +128,20 @@ def order(request):
     orders_count = orders.count()
     workers_count = User.objects.all().count()
     products_count = Product.objects.all().count()
+    booking_count = Booking.objects.all().count()
     context = {
         'orders': orders,
         'workers_count': workers_count,
         'orders_count': orders_count,
         'products_count': products_count,
+        'booking_count': booking_count,
     }
     return render(request, 'dashboard/order.html', context)
 
 @login_required
 def reservation_list(request):
     booking = Booking.objects.all()
+    booking_count = booking.count()
     orders_count = Order.objects.all().count()
     workers_count = User.objects.all().count()
     products_count = Product.objects.all().count()
@@ -125,24 +150,20 @@ def reservation_list(request):
         'workers_count': workers_count,
         'orders_count': orders_count,
         'products_count': products_count,
+        'booking_count': booking_count,
     }
     return render(request, 'dashboard/reservation_list.html', context)
 
 
-def approve_booking(request, pk):
-    booking = Booking.objects.all(pk=pk)
-    if request.method == "POST":
-         if request.POST.get('reject') == None:
-            booking.status = "Accepted"
-         else: 
-            booking.remarks = request.POST.get('reject')
-            booking.status = "Rejected"
-            booking.save()
 
-    context={
-        'booking': booking,
-    }
-    return render(request, 'dashboard/reservation_list.html', context)
+
+def reject_booking(request, pk):
+    booking = Booking.objects.get(id=pk)
+    if request.method == 'POST':
+        booking.delete()
+        return redirect('dashboard-reservation_list')
+    return render(request, 'dashboard/reject_booking.html')
+
 
 
 def dashboard(request):

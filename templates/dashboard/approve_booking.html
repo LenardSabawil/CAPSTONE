@@ -25,7 +25,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    {% for booking in booking %}
+                    
                 <tr>
                     <th scope="row">{{ booking.id }}</th>
                     <td>{{ booking.user }}</td>
@@ -33,14 +33,9 @@
                     <td>{{ booking.room.category }}</td>
                     <td>{{ booking.check_in }}</td>
                     <td>{{ booking.check_out }}</td>
-                    <td>
-                    <a class="btn btn-info btn-sm" type="submit" href="{% url 'dashboard-approve-booking' booking.id %}">approve</a>
-                    <a class="btn btn-danger btn-sm" type="reject" href="{% url 'dashboard-reject-booking' booking.id %}">reject</a>
-                    </td>
-                    
-                    
+  
                 </tr>
-                {% endfor %}
+                
                 </tbody>
             </table>
         </div>

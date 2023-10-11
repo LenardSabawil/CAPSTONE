@@ -205,58 +205,8 @@
           <div class="col-md-7">
             <h2 class="heading text-white" data-aos="fade">Our Food Menu</h2>
             <p class="text-white" data-aos="fade" data-aos-delay="100">"Discover a diverse menu with a blend of flavors, from appetizers to desserts. Explore classic favorites and exciting new dishes, promising a memorable dining experience."</p>
+            <p><a href="{% url 'foodlist' %}" class="btn btn-primary text-white py-2 mr-3">Order Food Now!</a></p>
           </div>
-        </div>
-        <div class="container transparent-background">
-          <div class="container">
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header" data-aos="fade">
-                                Make Request
-                        </div>
-                        <div class="card-body" data-aos="fade" data-aos-delay="100">
-                            <form method="POST">
-                                {% csrf_token %}
-                                {{ form|crispy }}
-                                <input class="btn btn-info btn-block" type="submit" value="Make Request">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">
-                            Orders Records
-                        </div>
-                        <div class="card-body">
-                            <table class="table bg-white">
-                                <thead class="bg-info text-white">
-                                    <tr>
-                                        <th scope="col">Product</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Date of Order</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for order in orders %}
-                                    {% if order.staff == user %}
-                                    <tr>
-                                        <td>{{ order.product.name }}</td>
-                                        <td>{{ order.product.category }}</td>
-                                        <td>{{ order.order_quantity }}</td>
-                                        <td>{{ order.date }}</td>
-                                    </tr> 
-                                    {% endif %}
-                                    {% endfor %}                          
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
         </div>
         <div class="food-menu-tabs mt-4" data-aos="fade">
           <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">

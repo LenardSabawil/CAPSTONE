@@ -8,6 +8,7 @@ from .forms import ProductForm, OrderForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 
+
 # Create your views here.
 
 @login_required
@@ -28,7 +29,7 @@ def index(request):
     else:
         form = OrderForm()
     context = {
-        'orders':orders,
+        'orders': orders,
         'form': form,
         'products': products,
         'workers_count': workers_count,
@@ -37,6 +38,7 @@ def index(request):
         'booking_count': booking_count,
     }
     return render(request, 'dashboard/index.html', context)
+
 
 @login_required
 def staff(request):
@@ -54,6 +56,7 @@ def staff(request):
     }
     return render(request, 'dashboard/staff.html', context)
 
+
 @login_required
 def staff_details(request, pk):
     workers = User.objects.get(id=pk)
@@ -62,13 +65,14 @@ def staff_details(request, pk):
     products_count = Product.objects.all().count()
     booking_count = Booking.objects.all().count()
     context = {
-        'workers':workers,
+        'workers': workers,
         'workers_count': workers_count,
         'orders_count': orders_count,
         'products_count': products_count,
         'booking_count': booking_count,
     }
     return render(request, 'dashboard/staff_details.html', context)
+
 
 @login_required
 def product(request):
@@ -138,6 +142,7 @@ def order(request):
     }
     return render(request, 'dashboard/order.html', context)
 
+
 @login_required
 def reservation_list(request):
     booking = Booking.objects.all()
@@ -155,8 +160,27 @@ def reservation_list(request):
     return render(request, 'dashboard/reservation_list.html', context)
 
 
+@login_required
+def approve_booking(request, pk):
+    booking = Booking.objects.get(id=pk)
+    booking_count = Booking.objects.all().count()
+    orders_count = Order.objects.all().count()
+    workers_count = User.objects.all().count()
+    products_count = Product.objects.all().count()
+    if request.method == 'POST':
+        booking.save()
+        return redirect('dashboard-reservation_list')
+    context = {
+        'booking': booking,
+        'workers_count': workers_count,
+        'orders_count': orders_count,
+        'products_count': products_count,
+        'booking_count': booking_count,
+    }
+    return render(request, 'dashboard/approve_booking.html', context)
 
 
+@login_required
 def reject_booking(request, pk):
     booking = Booking.objects.get(id=pk)
     if request.method == 'POST':
@@ -165,22 +189,48 @@ def reject_booking(request, pk):
     return render(request, 'dashboard/reject_booking.html')
 
 
+@login_required
+def food_list(request):
+    product = Product.objects.all()
+    orders = Order.objects.all()
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.staff = request.user
+            instance.save()
+        return redirect('foodlist')
+    else:
+        form = OrderForm()
+    context = {
+        'form': form,
+        'product': product,
+        'orders': orders,
+    }
+    return render(request, 'dashboard/food_list.html', context)
+
 
 def dashboard(request):
     return render(request, 'costumer_dashboard/index.html')
 
+
 def reservation(request):
     return render(request, 'costumer_dashboard/reservation.html')
+
 
 def about(request):
     return render(request, 'costumer_dashboard/about.html')
 
+
 def contact(request):
     return render(request, 'costumer_dashboard/contact.html')
+
 
 def rooms(request):
     return render(request, 'costumer_dashboard/rooms.html')
 
+
 def events(request):
     return render(request, 'costumer_dashboard/events.html')
+
 

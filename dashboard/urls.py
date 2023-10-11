@@ -18,6 +18,8 @@ urlpatterns = [
     path('rooms/', views.rooms, name="costumer-rooms"),
     path('events/', views.events, name="costumer-events"),
     path('room_list/', room_list, name='roomlist'),
+    path('food_list/', views.food_list, name='foodlist'),
     path('book/', booking_view, name='booking_view'),
     path('book/reject/<int:pk>/', views.reject_booking, name="dashboard-reject-booking"),
+    path('book/approve/<int:pk>/', views.approve_booking, name="dashboard-approve-booking"),
 ]

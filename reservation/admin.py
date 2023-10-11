@@ -3,7 +3,7 @@ from .models import Room, Booking
 
 # Register your models here.
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ('number', 'category', 'beds', 'capacity')
+    list_display = ('number', 'category', 'beds', 'capacity', 'price')
     list_filter = ['category']
 
 admin.site.register(Room, RoomAdmin),

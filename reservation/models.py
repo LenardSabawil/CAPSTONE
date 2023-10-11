@@ -16,6 +16,7 @@ class Room(models.Model):
     category = models.CharField(max_length=3, choices=ROOM_CATEGORIES)
     beds = models.IntegerField()
     capacity = models.IntegerField()
+    price = models.IntegerField(null=True)
 
     def __str__(self):
         return f'{self.number}. {self.category} with {self.beds} beds for {self.capacity} people'

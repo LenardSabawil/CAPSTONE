@@ -20,3 +20,4 @@ class AvailabilityForm(forms.Form):
         input_formats=["%Y-%m-%dT%h:%M"],
         widget=DateTimeInput(attrs={'type': 'datetime-local'}),
     )
+

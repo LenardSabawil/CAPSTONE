@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'reservation.apps.ReservationConfig',
     'reservation.booking_functions',
+    'invoice.apps.InvoiceConfig'
 ]
 
 MIDDLEWARE = [

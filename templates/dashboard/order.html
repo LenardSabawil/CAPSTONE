@@ -19,6 +19,7 @@
                     <th scope="col">Category</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Date of Order</th>
+                    <th scope="col"></th>
 
                 </tr>
                 </thead>
@@ -31,6 +32,9 @@
                     <td>{{ order.product.category }}</td>
                     <td>{{ order.order_quantity }}</td>
                     <td>{{ order.date }}</td>
+                    <td>
+                        <a class="btn btn-info btn-sm" href="{% url 'generate_bill' order.id %}">Bill</a>
+                    </td>
                     
                 </tr>
                 {% endfor %}

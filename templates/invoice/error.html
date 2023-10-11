@@ -1,0 +1,16 @@
+{% extends 'partials/base.html' %}
+{% block title %}Bill Page{% endblock %}
+
+{% block content %}
+{% include 'partials/topnav.html' %}
+
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Error</h1>
+        <div class="alert alert-danger">
+            {{ error_message }}
+        </div>
+    </div>
+</body>
+
+{% endblock %}

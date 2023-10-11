@@ -1,5 +1,6 @@
 from django.urls import path
-from reservation.views import room_list, booking_view, approve_booking
+from reservation.views import room_list, booking_view
+from invoice.views import generate_bill
 from . import views
 
 urlpatterns = [
@@ -22,4 +23,5 @@ urlpatterns = [
     path('book/', booking_view, name='booking_view'),
     path('book/reject/<int:pk>/', views.reject_booking, name="dashboard-reject-booking"),
     path('book/approve/<int:pk>/', views.approve_booking, name="dashboard-approve-booking"),
+    path('generate_bill/<int:pk>/', generate_bill, name='generate_bill'),
 ]

@@ -1,0 +1,28 @@
+{% extends 'partials/base.html' %}
+{% block title %}Bill Page{% endblock %}
+
+{% block content %}
+{% include 'partials/topnav.html' %}
+
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Bill</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Product Name:</strong> {{ product_name }}</p>
+                <p><strong>Order Quantity:</strong> {{ order_quantity }}</p>
+                <p><strong>Product Price:</strong> ${{ product_price }}</p>
+                <p><strong>Total Amount:</strong> ${{ total_amount }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Room Info:</strong></p>
+                <p>{{ room_info }}</p>
+                <p><strong>User Info:</strong></p>
+                <p>{{ user_info }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+{% endblock %}
